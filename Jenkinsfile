@@ -25,11 +25,13 @@ environment {
     }
   }
 
-  stage('deploy') {
-    steps {
-      sh "docker run -itd -p 80:8080 shruthi117/shruthi:$BUILD_NUMBER"
-    }
-  }
+   stage('Deploy to K8s'){
+            steps{
+                script{
+                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetes')
+                }
+            }
+        }
 
 }
 
