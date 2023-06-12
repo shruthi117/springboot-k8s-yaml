@@ -1,16 +1,14 @@
 pipeline{
-    agent any
-tools{
-        maven 'maven'
+    agent any 
+environment {
+		DOCKER_LOGIN_CREDENTIALS=credentials('shruthi117-dockerhub')
+	}
+    stages {
+  stage('checkout') {
+    steps {
+      git 'https://github.com/shruthi117/springboot-k8s-yaml.git'
     }
-    
-    stages{
-        stage('Build Maven'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/shruthi117/springboot-k8s-yaml.git']]])
-                sh 'mvn clean install'
-            }
-        }
+  }
 
   stage('build') {
     steps {
