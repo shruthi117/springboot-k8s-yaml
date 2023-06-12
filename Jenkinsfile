@@ -1,7 +1,7 @@
 pipeline{
     agent any
 environment {
-		DOCKER_LOGIN_CREDENTIALS=credentials('shruthi117-docker')
+		DOCKER_LOGIN_CREDENTIALS=credentials('shruthi117-dockerhub')
 	}
     stages {
   stage('checkout') {
